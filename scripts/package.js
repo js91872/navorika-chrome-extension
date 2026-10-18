@@ -1,0 +1,11 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const { execFileSync } = require('node:child_process');
+const root = path.resolve(__dirname, '..');
+const output = path.join(root, 'dist');
+fs.rmSync(output, { recursive: true, force: true });
+fs.mkdirSync(output, { recursive: true });
+const files = ['manifest.json', 'popup.html', 'popup.css', 'src', 'assets'];
+const zip = path.join(output, 'navorika-chrome-extension.zip');
+execFileSync('zip', ['-q', '-r', zip, ...files], { cwd: root });
+console.log(`Created ${path.relative(root, zip)}`);

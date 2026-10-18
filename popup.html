@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Navorika Tools</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="https://navorika.com/" target="_blank" rel="noreferrer" aria-label="Navorika home">
+        <span class="brand-mark" aria-hidden="true"><span>N</span></span>
+        <span class="brand-word">navorika<span class="brand-dot">.</span></span>
+      </a>
+      <button id="favorites-toggle" class="icon-button" type="button" aria-label="Show favorites" title="Show favorites">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg>
+      </button>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow">YOUR TOOLKIT, ONE CLICK AWAY</p>
+      <h1>Make it. Check it. Done.</h1>
+      <p class="intro-copy">A few useful Navorika tools, ready when you need them.</p>
+    </section>
+
+    <label class="search-box" for="tool-search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.4 4.4"/></svg>
+      <input id="tool-search" type="search" placeholder="Find a tool" autocomplete="off" aria-label="Find a tool">
+      <kbd>/</kbd>
+    </label>
+
+    <nav class="filters" aria-label="Filter tools">
+      <button class="filter-chip active" data-filter="all" type="button">All tools <span id="tool-count">7</span></button>
+      <button class="filter-chip" data-filter="image" type="button">Image</button>
+      <button class="filter-chip" data-filter="design" type="button">Design</button>
+      <button class="filter-chip" data-filter="pdf" type="button">PDF</button>
+      <button class="filter-chip" data-filter="cad" type="button">CAD</button>
+    </nav>
+
+    <section id="tool-list" class="tool-list" aria-label="Navorika tools"></section>
+    <section id="workspace" class="workspace" hidden aria-live="polite">
+      <button id="workspace-back" class="back-button" type="button">← <span>All tools</span></button>
+      <div id="aspect-tool" hidden>
+        <p class="workspace-kicker">RESPONSIVE CSS</p>
+        <h2>Aspect ratio calculator</h2>
+        <p class="workspace-copy">Calculate the padding fallback and copy ready-to-use CSS.</p>
+        <a class="site-tool-link" href="https://navorika.com/tools/aspect-ratio-padding-calculator" target="_blank" rel="noreferrer">Open full Navorika tool ↗</a>
+        <div class="input-row">
+          <label>Width <input id="ratio-width" type="number" min="0.01" step="any" value="16"></label>
+          <span class="ratio-separator">:</span>
+          <label>Height <input id="ratio-height" type="number" min="0.01" step="any" value="9"></label>
+        </div>
+        <div class="preset-row" aria-label="Common aspect ratios">
+          <button type="button" data-ratio="16:9">16:9</button><button type="button" data-ratio="4:3">4:3</button><button type="button" data-ratio="1:1">1:1</button><button type="button" data-ratio="9:16">9:16</button>
+        </div>
+        <div class="result-card"><span>Padding-top fallback</span><strong id="ratio-result">56.25%</strong><div id="ratio-preview" class="ratio-preview"></div></div>
+        <pre id="ratio-code" class="code-output"></pre>
+        <button class="copy-button" type="button" data-copy="ratio">Copy CSS</button>
+      </div>
+      <div id="flex-tool" hidden>
+        <p class="workspace-kicker">LIVE CSS PLAYGROUND</p>
+        <h2>Flexbox generator</h2>
+        <p class="workspace-copy">Adjust the layout and copy the generated CSS.</p>
+        <a class="site-tool-link" href="https://navorika.com/tools/css-flexbox-generator" target="_blank" rel="noreferrer">Open full Navorika tool ↗</a>
+        <div class="flex-controls">
+          <label>Direction<select id="flex-direction"><option>row</option><option>column</option><option>row-reverse</option><option>column-reverse</option></select></label>
+          <label>Justify<select id="flex-justify"><option>flex-start</option><option>center</option><option>flex-end</option><option>space-between</option><option>space-around</option></select></label>
+          <label>Align<select id="flex-align"><option>stretch</option><option>center</option><option>flex-start</option><option>flex-end</option></select></label>
+          <label>Gap <span><input id="flex-gap" type="number" min="0" max="64" value="12"> px</span></label>
+        </div>
+        <div id="flex-preview" class="flex-preview" aria-label="Flexbox layout preview"><i>1</i><i>2</i><i>3</i></div>
+        <pre id="flex-code" class="code-output"></pre>
+        <button class="copy-button" type="button" data-copy="flex">Copy CSS</button>
+      </div>
+    </section>
+    <div id="empty-state" class="empty-state" hidden>
+      <span class="empty-icon">⌕</span>
+      <strong>No matching tools</strong>
+      <span>Try another search or category.</span>
+    </div>
+
+    <footer class="footer">
+      <span>Free tools for everyday work</span>
+      <a href="https://navorika.com/tools" target="_blank" rel="noreferrer">Explore all tools <span aria-hidden="true">↗</span></a>
+    </footer>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </main>
+  <script src="src/tools.js"></script>
+  <script src="src/calculations.js"></script>
+  <script src="src/popup.js"></script>
+</body>
+</html>
